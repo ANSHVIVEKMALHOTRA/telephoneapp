@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -15,18 +17,7 @@ individual userDetails;
 }
 
 class _InfoState extends State<Info> {
-  // var userDetails = {
-  //   'name': 'John Doe',
-  //   'email': 'john.doe@example.com',
-  //   'siteName': 'Company Site',
-  //   'joiningDate': 'January 1, 2022',
-  //   'departmentId': 'IT-123',
-  //   'mobile1': '+1 (123) 456-7890',
-  //   'mobile2': '+1 (987) 654-3210',
-  //   'landlineOffice': '+1 (555) 123-4567',
-  //   'landlineResidential': '+1 (555) 987-6543',
-  //   'designation': 'Software Engineer',
-  // };
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -84,9 +75,9 @@ class _InfoState extends State<Info> {
                             children: <Widget>[
                               ElevatedButton(
                                 onPressed: () {
-                                  _makingPhoneCall(widget.userDetails.mobile1); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
+                                  whatsapp(widget.userDetails.mobile1); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
                                 },
-                                child:const  Icon(Icons.call),
+                                child:const  Icon(Icons.message_outlined),
                               ),
                               // IconTile(
                               //   backColor:const  Color(0xffFEF2F0),
@@ -171,8 +162,10 @@ Card(
 )
 ),
 
+
 Card(
- child: ListTile(
+ child:
+ ListTile(
   minLeadingWidth: 20,
   leading: const Icon(Icons.mobile_friendly),
   title: Row(
@@ -182,14 +175,25 @@ Card(
         "${widget.userDetails.mobile1}",
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
+      Padding(padding: EdgeInsets.all(40)),
+      ElevatedButton(
+        onPressed: () {
+          _makingPhoneCall(widget.userDetails.mobile1); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
+        },
+        child:const  Icon(Icons.call),
+      ),
     ],
   ),
-  subtitle: Text(
-    "Mobile-1",
-    style: TextStyle(fontSize: 12),
-  ),
-)
+   subtitle: Text (
+        "Mobile-1",
+        style: TextStyle(fontSize: 12),
+      ),
+
+ ),
 ),
+
+
+
 Card(
  child: ListTile(
   minLeadingWidth: 20,
@@ -200,6 +204,13 @@ Card(
       Text(
         "${widget.userDetails.mobile2}",
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+      Padding(padding: EdgeInsets.all(40)),
+      ElevatedButton(
+        onPressed: () {
+          _makingPhoneCall(widget.userDetails.mobile2); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
+        },
+        child:const  Icon(Icons.call),
       ),
     ],
   ),
@@ -221,6 +232,13 @@ Card(
       Text(
         "${widget.userDetails.landlineOffice}",
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+      Padding(padding: EdgeInsets.all(40)),
+      ElevatedButton(
+        onPressed: () {
+          _makingPhoneCall(widget.userDetails.landlineOffice); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
+        },
+        child:const  Icon(Icons.call),
       ),
     ],
   ),
@@ -251,157 +269,12 @@ Card(
 )
 ),
 
-                const SizedBox(height: 8),
-                Text("Site Name: ${widget.userDetails.siteName}",
-                    style:const  TextStyle(color: Colors.black, fontSize: 16)),
-                const SizedBox(height: 8),
-                Text("Joining Date: ${widget.userDetails.joiningDate}",
-                    style:const  TextStyle(color: Colors.black, fontSize: 16)),
-                const SizedBox(height: 8),
-                Text("Department ID: ${widget.userDetails.departmentId}",
-                    style:const  TextStyle(color: Colors.black, fontSize: 16)),
-               const  SizedBox(height: 8),
-                Text("Mobile 1: ${widget.userDetails.mobile1}",
-                    style:const  TextStyle(color: Colors.black, fontSize: 16)),
-                const SizedBox(height: 8),
-                Text("Mobile 2: ${widget.userDetails.mobile2}",
-                    style:const  TextStyle(color: Colors.black, fontSize: 16)),
-                const SizedBox(height: 8),
-                Text("Landline (Office): ${widget.userDetails.landlineOffice}",
-                    style: const TextStyle(color: Colors.black, fontSize: 16)),
-                const SizedBox(height: 8),
-                Text(
-                    "Landline (Residential): ${widget.userDetails.landlineResidential}",
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
-                const SizedBox(height: 8),
-                Text("Designation: ${widget.userDetails.designation}",
-                    style:const  TextStyle(color: Colors.black, fontSize: 16)),
-                const SizedBox(
+                SizedBox(
                   height: 20,
-                ),
-                
-                const SizedBox(
-                  height: 24,
-                ),
-               
-//                         Row(
-//                           children: <Widget>[
-//                             Icon(Icons.accessibility_outlined),
-//                             SizedBox(
-//                               width: 20,
-//                             ),
-//                             Column(
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: <Widget>[
-//                                 Text(
-//                                   "Availability",
-//                                   style: TextStyle(
-//                                       color: Colors.black87.withOpacity(0.7),
-//                                       fontSize: 20),
-//                                 ),
-//                                 SizedBox(
-//                                   height: 3,
-//                                 ),
-//                                 Container(
-//                                     width:
-//                                         MediaQuery.of(context).size.width - 268,
-//                                     child: Text(
-//                                       '''Monday - Friday
-// Open till 7 Pm''',
-//                                       style: TextStyle(color: Colors.grey),
-//                                     ))
-//                               ],
-//                             )
-//                           ],
-//                         )
-                    
-                /*
-                const Text(
-                  "Activity",
-                  style: TextStyle(
-                      color: Color(0xff242424),
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600),
-                ),
-               const  SizedBox(
-                  height: 22,
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        padding:
-                           const  EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                        decoration: BoxDecoration(
-                            color:const  Color(0xffFBB97C),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  color: Color(0xffFCCA9B),
-                                  borderRadius: BorderRadius.circular(16)),
-                              child:const  Icon(Icons.list),
-                            ),
-                           const  SizedBox(
-                              width: 16,
-                            ),
-                            Container(
-                              width:
-                                  MediaQuery.of(context).size.width / 2 - 130,
-                              child:const  Text(
-                                "List Of Schedule",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 17),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Container(
-                        padding:
-                            const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                        decoration: BoxDecoration(
-                            color: Color(0xffA5A5A5),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding:const  EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  color: Color(0xffBBBBBB),
-                                  borderRadius: BorderRadius.circular(16)),
-                              child: Icon(Icons.list),
-                            ),
-                           const  SizedBox(
-                              width: 16,
-                            ),
-                            Container(
-                              width:
-                                  MediaQuery.of(context).size.width / 2 - 130,
-                              child:const  Text(
-                                "Doctor's Daily Post",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 17),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
                 )
-                */
-              ],
-            ),
+
+        ]
+        ),
           ),
         ),
       );
@@ -417,6 +290,12 @@ _makingPhoneCall(String? mobile1) async {
     throw 'Could not launch $url';
   }
 }
+
+whatsapp(String? mobile1) async{
+  var whatsapp ="+mobile1!";
+  var whatsappURl_android = "whatsapp://send?phone="+whatsapp+"&text=hello";
+  var whatappURL_ios ="https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+  }
 
 class IconTile extends StatelessWidget {
   final String? imgAssetPath;
