@@ -2,8 +2,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 import 'package:telephoneapp/models/individual.dart';
-import 'package:android_intent/android_intent.dart';
-//import 'package:url_launcher/url_launcher.dart';
+//import 'package:android_intent/android_intent.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Info extends StatefulWidget {
   Info({super.key,required this.userDetails});
@@ -84,7 +84,7 @@ class _InfoState extends State<Info> {
                             children: <Widget>[
                               ElevatedButton(
                                 onPressed: () {
-                               //   _makingPhoneCall(1234); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
+                                  _makingPhoneCall(widget.userDetails.mobile1); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
                                 },
                                 child:const  Icon(Icons.call),
                               ),
@@ -407,16 +407,17 @@ Card(
       );
   }
 }
-/*
-_makingPhoneCall(int num) async {
-  var url = Uri.parse("tel:%d", num);
+
+_makingPhoneCall(String? mobile1) async {
+  var url = Uri.parse("tel:"+mobile1!);
+
   if (await canLaunchUrl(url)) {
     await launchUrl(url);
   } else {
     throw 'Could not launch $url';
   }
 }
-*/
+
 class IconTile extends StatelessWidget {
   final String? imgAssetPath;
   final Color? backColor;
