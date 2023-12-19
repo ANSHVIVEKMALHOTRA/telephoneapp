@@ -101,6 +101,12 @@ class _InfoState extends State<Info> {
                                 },
                                 child:const  Icon(Icons.message_outlined),
                               ),
+                              ElevatedButton(
+                                onPressed:() {
+                                  _sendingMails(widget.userDetails.email);
+                                },
+                                child: Icon(Icons.mail_outline_rounded),
+                              ),
                               // IconTile(
                               //   backColor:const  Color(0xffFEF2F0),
                               //   imgAssetPath: "assets/call.png",
@@ -335,5 +341,13 @@ class IconTile extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+_sendingMails(String? Email) async {
+  var url = Uri.parse("mailto:"+Email!);
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
