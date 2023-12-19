@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:telephoneapp/models/individual.dart';
 //import 'package:android_intent/android_intent.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:io';
 
 class Info extends StatefulWidget {
   Info({super.key,required this.userDetails});
@@ -19,6 +20,27 @@ individual userDetails;
 class _InfoState extends State<Info> {
 
   @override
+  void launchWhatsApp(
+      String? phone,
+      String message,
+      ) async {
+    String url() {
+      if (Platform.isAndroid) {
+        // add the [https]
+        return "https://wa.me/+91$phone/?text="; // new line
+      } else {
+        // add the [https]
+        return "https://api.whatsapp.com/send?phone=+91$phone="; // new line
+      }
+    }
+
+    if (await canLaunch(url())) {
+      await launch(url());
+    } else {
+      throw 'Could not launch ${url()}';
+    }
+  }
+  
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: Colors.blueGrey[50],
@@ -75,7 +97,7 @@ class _InfoState extends State<Info> {
                             children: <Widget>[
                               ElevatedButton(
                                 onPressed: () {
-                                  whatsapp(widget.userDetails.mobile1); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
+                                  launchWhatsApp(widget.userDetails.mobile1, 'hello'); // THEIR PHONE NUMBER OR LANDLINE NUMBER ANY FEASIBLE
                                 },
                                 child:const  Icon(Icons.message_outlined),
                               ),
@@ -291,11 +313,6 @@ _makingPhoneCall(String? mobile1) async {
   }
 }
 
-whatsapp(String? mobile1) async{
-  var whatsapp ="+mobile1!";
-  var whatsappURl_android = "whatsapp://send?phone="+whatsapp+"&text=hello";
-  var whatappURL_ios ="https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
-  }
 
 class IconTile extends StatelessWidget {
   final String? imgAssetPath;
